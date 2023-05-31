@@ -22,4 +22,15 @@ public class Player {
         list.remove(card);
     }
 
+    public void displayCards (ArrayList<Card> list) {
+        ArrayList<String> arr = new ArrayList<>();
+        for (Card cards : list)
+            arr.add(cards.getRank() + " " + cards.getSuit());
+        System.out.println(arr);
+    }
+
+    public boolean hasWon (ArrayList<Card> list) {
+        return list.isEmpty();
+    }
+
 }
