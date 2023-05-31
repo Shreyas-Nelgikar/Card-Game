@@ -29,6 +29,14 @@ public class Player {
         System.out.println(arr);
     }
 
+    public boolean hasPlayableCard (ArrayList<Card> list, Card topCard) {
+        for (Card cards : list) {
+            if (topCard.getSuit() == cards.getSuit() || topCard.getRank() == cards.getRank())
+                return true;
+        }
+        return false;
+    }
+
     public boolean hasWon (ArrayList<Card> list) {
         return list.isEmpty();
     }
