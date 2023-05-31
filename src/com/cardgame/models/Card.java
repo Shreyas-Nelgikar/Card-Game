@@ -1,5 +1,7 @@
 package com.cardgame.models;
 
+import java.util.ArrayList;
+
 public class Card {
 
     private int rank;
@@ -14,15 +16,16 @@ public class Card {
         return rank;
     }
 
-    public void setRank(int rank) {
-        this.rank = rank;
-    }
-
     public char getSuit() {
         return suit;
     }
 
-    public void setSuit(char suit) {
-        this.suit = suit;
+    public void display (ArrayList<Card> list) {
+        ArrayList<String> arr = new ArrayList<>();
+        for (Card cards: list) {
+            arr.add(cards.getRank() + " " + cards.getSuit());
+        }
+        System.out.println(arr);
     }
+
 }
