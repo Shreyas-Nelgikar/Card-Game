@@ -46,4 +46,24 @@ public class Game {
     public void setTopCard(Card topCard) {
         this.topCard = topCard;
     }
+
+    public int getNextPlayerIndex (int currPlayerIndex, boolean reverseOrder) {
+        int numPlayers = players.size();
+        int nextPlayerIndex;
+        if (reverseOrder) {
+            nextPlayerIndex = (currPlayerIndex - 1 + numPlayers) % numPlayers;
+        }
+        else {
+            nextPlayerIndex = (currPlayerIndex + 1) % numPlayers;
+        }
+        return nextPlayerIndex;
+    }
+
+
+
+
+
+
+
+
 }
