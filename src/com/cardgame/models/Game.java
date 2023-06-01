@@ -129,6 +129,7 @@ public class Game {
                 reverseOrder = !reverseOrder;
                 topCard = pickCards(game.getStandardDeck());
                 player.removeCard(game.getStandardDeck(), topCard);
+                currPlayerIndex = getNextPlayerIndex(currPlayerIndex, reverseOrder);
                 System.out.println("Direction of the game has been reversed");
             }
 
