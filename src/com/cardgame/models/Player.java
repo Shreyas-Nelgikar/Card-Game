@@ -28,6 +28,10 @@ public class Player {
         return cardsInHand;
     }
 
+    public String getBonus(int index) {
+        return bonus[index];
+    }
+
     public void addCard (ArrayList<Card> list, Card card) {
         list.add(card);
     }

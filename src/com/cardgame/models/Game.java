@@ -64,11 +64,13 @@ public class Game {
         return nextPlayerIndex;
     }
 
+    public Card pickCards (ArrayList<Card> standardDeck) {
+        return standardDeck.get(standardDeck.size()-1);
+    }
+
     public void displayCards (Player player) {
         player.displayCards();
     }
-
-    public boolean
 
     public void startGame (Game game) {
         int currPlayerIndex = game.getCurrPlayerIndex();
@@ -80,7 +82,28 @@ public class Game {
             System.out.println("##############################################################");
             System.out.println("Player" + (player.getPlayerName()) + "'s turn, please select a card");
             displayCards(player);
-            if (
+            if (topCard.getRank().equals(player.getBonus(0))) {
+                currPlayerIndex = getNextPlayerIndex(currPlayerIndex, reverseOrder);
+            }
+            else if (topCard.getRank().equals(player.getBonus(1))) {
+                reverseOrder = !reverseOrder;
+            }
+            else if (topCard.getRank().equals(player.getBonus(2))) {
+                for (int i=0; i<2; i++) {
+                    Card card = pickCards(game.getStandardDeck());
+                    player.addCard(game.getPlayers().get(currPlayerIndex).getCardsInHand(), card);
+                    player.removeCard(game.getStandardDeck(), card);
+                }
+                topCard = pickCards(game.getStandardDeck());
+                player.removeCard(game.getStandardDeck(), topCard);
+            }
+            else if (topCard.getRank().equals(player.getBonus(3))) {
+                for (int i=0; i<4; i++) {
+                    Card card = pickCards(game.getStandardDeck());
+                    player.addCard(game.getPlayers().get(currPlayerIndex).getCardsInHand(), card);
+                    player.removeCard(game.getStandardDeck(), card);
+                }
+            }
         }
     }
 
