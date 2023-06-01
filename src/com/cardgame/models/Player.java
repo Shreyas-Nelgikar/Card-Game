@@ -48,11 +48,11 @@ public class Player {
     }
 
     public boolean hasPlayableCard (Card card, Card topCard) {
-        if (!card.getRank().equals(topCard.getRank()) || !card.getSuit().equals(topCard.getSuit())) {
-            System.out.println("Please re-select a Card that matches Rank or Suit of the topCard");
-            return false;
+        if (card.getRank().equals(topCard.getRank()) || card.getSuit().equals(topCard.getSuit())) {
+            return true;
         }
-        return true;
+        System.out.println("Please re-select a Card that matches Rank or Suit of the topCard");
+        return false;
     }
 
     public boolean hasWon (ArrayList<Card> list) {
