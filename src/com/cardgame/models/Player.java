@@ -55,8 +55,8 @@ public class Player {
         return false;
     }
 
-    public boolean hasWon (Player player) {
-        return player.getCardsInHand().isEmpty();
+    public boolean hasWon () {
+        return this.getCardsInHand().isEmpty();
     }
 
 }

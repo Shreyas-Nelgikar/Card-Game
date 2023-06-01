@@ -90,9 +90,8 @@ public class Game {
     }
 
     public void gameState (Game game) {
-        if (hasWon(game.getStandardDeck()))
+        if (game.getStandardDeck().isEmpty())
             game.setGameState(GameState.DRAW);
-        else if (hasWon(game.getPlayers().get()))
     }
 
     public void startGame (Game game) {
@@ -108,12 +107,24 @@ public class Game {
 
 
             if (topCard.getRank().equals("A")) {
+
+                if (game.getStandardDeck().size() == 1) {
+                    System.out.println("The game is draw as there are no cards available to draw");
+                    break;
+                }
+
                 System.out.println( player.getPlayerName() + "'s turn has been skipped");
                 topCard = pickCards(game.getStandardDeck());
                 player.removeCard(game.getStandardDeck(), topCard);
             }
 
             else if (topCard.getRank().equals("K")) {
+
+                if (game.getStandardDeck().size() == 1) {
+                    System.out.println("The game is draw as there are no cards available to draw");
+                    break;
+                }
+
                 reverseOrder = !reverseOrder;
                 topCard = pickCards(game.getStandardDeck());
                 player.removeCard(game.getStandardDeck(), topCard);
@@ -121,6 +132,13 @@ public class Game {
             }
 
             else if (topCard.getRank().equals("Q")) {
+
+                if (game.getStandardDeck().size() < 2) {
+                    System.out.println("The game is draw as there are no cards available to draw");
+                    break;
+                }
+
+
                 for (int i=0; i<2; i++) {
                     Card card = pickCards(game.getStandardDeck());
                     player.addCard(game.getPlayers().get(currPlayerIndex).getCardsInHand(), card);
@@ -132,6 +150,13 @@ public class Game {
             }
 
             else if (topCard.getRank().equals("J")) {
+
+
+                if (game.getStandardDeck().size() < 4) {
+                    System.out.println("The game is draw as there are no cards available to draw");
+                    break;
+                }
+
                 for (int i=0; i<4; i++) {
                     Card card = pickCards(game.getStandardDeck());
                     player.addCard(game.getPlayers().get(currPlayerIndex).getCardsInHand(), card);
@@ -167,8 +192,13 @@ public class Game {
                 }
             }
 
+            if (game.getPlayers().get(currPlayerIndex).hasWon())
+                game.setGameState(GameState.WIN);
+
+            gameState(game);
+
             if (game.getGameState() == GameState.DRAW)
-                System.out.println("The game is draw as there are now cards available to draw");
+                System.out.println("The game is draw as there are no cards available to draw");
             else if (game.getGameState() == GameState.WIN)
                 System.out.println( (player.getPlayerName()) + " has won the game");
 
