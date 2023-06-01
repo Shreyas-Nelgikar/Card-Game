@@ -16,6 +16,18 @@ public class Player {
         this.cardsInHand = cardsInHand;
     }
 
+    public int getPlayerId() {
+        return playerId;
+    }
+
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public ArrayList<Card> getCardsInHand() {
+        return cardsInHand;
+    }
+
     public void addCard (ArrayList<Card> list, Card card) {
         list.add(card);
     }

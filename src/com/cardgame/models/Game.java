@@ -9,7 +9,6 @@ public class Game {
     private ArrayList<Card> standardDeck;
     private int currPlayerIndex;
     private Card topCard;
-    private Player player;
 
     Scanner scanner = new Scanner(System.in);
 
@@ -69,14 +68,19 @@ public class Game {
         player.displayCards();
     }
 
+    public boolean
+
     public void startGame (Game game) {
         int currPlayerIndex = game.getCurrPlayerIndex();
-        while (true) {
-            System.out.println("####################################################");
-            System.out.println("Player 1's turn, please select a card");
-            displayCards(game.getPlayers().get(currPlayerIndex));
-            int value = scanner.nextInt();
+        boolean reverseOrder = false;
 
+        while (true) {
+            Player player = game.getPlayers().get(currPlayerIndex);
+            Card topCard = game.getTopCard();
+            System.out.println("##############################################################");
+            System.out.println("Player" + (player.getPlayerName()) + "'s turn, please select a card");
+            displayCards(player);
+            if (
         }
     }
 
