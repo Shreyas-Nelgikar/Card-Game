@@ -5,8 +5,8 @@ import java.util.Collections;
 
 public class Deck {
 
-    private final String[] suit = {"Heart", "Diamond", "Spade", "Club"};
-    private final String[] rank = {"A", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
+    CardSuit cardSuit;
+    CardRank cardRank;
     private ArrayList<Card> standardDeck;
 
     public Deck () {
@@ -15,8 +15,8 @@ public class Deck {
 
     public void completeDeck () {
         standardDeck = new ArrayList<>();
-        for (String suits : suit) {
-            for (String ranks : rank) {
+        for (CardSuit suits: CardSuit.values()) {
+            for (CardRank ranks : CardRank.values()) {
                 Card card = new Card(ranks, suits);
                 standardDeck.add(card);
             }

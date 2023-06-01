@@ -4,19 +4,19 @@ import java.util.ArrayList;
 
 public class Card {
 
-    private String rank;
-    private String suit;
+    private CardRank rank;
+    private CardSuit suit;
 
-    public Card (String rank, String suit) {
+    public Card (CardRank rank, CardSuit suit) {
         this.rank = rank;
         this.suit = suit;
     }
 
-    public String getRank() {
+    public CardRank getRank() {
         return rank;
     }
 
-    public String getSuit() {
+    public CardSuit getSuit() {
         return suit;
     }
 

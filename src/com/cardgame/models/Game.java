@@ -10,6 +10,7 @@ public class Game {
     private int currPlayerIndex;
     private Card topCard;
     private GameState gameState;
+    private CardRank cardRank;
 
     Scanner scanner = new Scanner(System.in);
 
@@ -106,7 +107,7 @@ public class Game {
 //            System.out.println(topCard.getRank());
 
 
-            if (topCard.getRank().equals("A")) {
+            if (topCard.getRank().equals(CardRank.A)) {
 
                 if (game.getStandardDeck().size() == 1) {
                     System.out.println("The game is draw as there are no cards available to draw");
@@ -118,7 +119,7 @@ public class Game {
                 player.removeCard(game.getStandardDeck(), topCard);
             }
 
-            else if (topCard.getRank().equals("K")) {
+            else if (topCard.getRank().equals(CardRank.King)) {
 
                 if (game.getStandardDeck().size() == 1) {
                     System.out.println("The game is draw as there are no cards available to draw");
@@ -131,7 +132,7 @@ public class Game {
                 System.out.println("Direction of the game has been reversed");
             }
 
-            else if (topCard.getRank().equals("Q")) {
+            else if (topCard.getRank().equals(CardRank.Queen)) {
 
                 if (game.getStandardDeck().size() < 2) {
                     System.out.println("The game is draw as there are no cards available to draw");
@@ -149,7 +150,7 @@ public class Game {
                 System.out.println((player.getPlayerName()) + " has picked 2 cards");
             }
 
-            else if (topCard.getRank().equals("J")) {
+            else if (topCard.getRank().equals(CardRank.Joker)) {
 
 
                 if (game.getStandardDeck().size() < 4) {
