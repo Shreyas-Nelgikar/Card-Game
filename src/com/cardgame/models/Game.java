@@ -1,6 +1,7 @@
 package com.cardgame.models;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Game {
 
@@ -9,6 +10,10 @@ public class Game {
     private int currPlayerIndex;
     private Card topCard;
     private Player player;
+
+    Scanner scanner = new Scanner(System.in);
+
+    public Game() {};
 
     public Game (ArrayList<Player> players) {
         this.currPlayerIndex = 0;
@@ -66,19 +71,25 @@ public class Game {
 
     public void createGame () {
         int currPlayerIndex = 0;
-        ArrayList<ArrayList<Card>> inHandCards = deck.drawCards(4, 5);
+        Deck deck = new Deck();
+        System.out.println("Welcome to the card Game");
+        System.out.println("Please select at max 4 players");
+        int noOfPlayers = scanner.nextInt();
+        while (noOfPlayers > 4) {
+            System.out.println("You have crossed the maximum limit of players. Please select again");
+            noOfPlayers = scanner.nextInt();
+        }
+        ArrayList<ArrayList<Card>> inHandCards = deck.drawCards(noOfPlayers, 5);
         ArrayList<Player> players = new ArrayList<>();
-        players.add(new Player(1, "Luffy", inHandCards.get(0)));
-        players.add(new Player(2, "SABO", inHandCards.get(1)));
-//            players.add(new Player(2, "SABO", inHandCards.get(2)));
-//            players.add(new Player(2, "SABO", inHandCards.get(3)));
+        for (int i=0; i<noOfPlayers; i++) {
+            System.out.println("Please select id for player " + i + 1);
+            int id = scanner.nextInt();
+            System.out.println("Please select name for player " + i + 1);
+            String name = scanner.next();
+            players.add(new Player(id, name, inHandCards.get(i)));
+        }
         ArrayList<Card> standardDeck = new ArrayList<>();
         Card topCard = null;
-        Game game = gameController.startGame(players, standardDeck, currPlayerIndex, topCard);
-        gameController.displayCards(game, currPlayerIndex);
-        gameController.displayCards(game, 1);
-//            gameController.displayCards(game, 2);
-//            gameController.displayCards(game, 3);
     }
 
 }
