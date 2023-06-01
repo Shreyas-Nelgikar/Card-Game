@@ -89,11 +89,11 @@ public class Game {
         player.displayCards();
     }
 
-    public boolean hasWon (ArrayList<Card> list) {
-        return list.isEmpty();
+    public void gameState (Game game) {
+        if (hasWon(game.getStandardDeck()))
+            game.setGameState(GameState.DRAW);
+        else if (hasWon(game.getPlayers().get()))
     }
-
-    public void gameState ()
 
     public void startGame (Game game) {
         int currPlayerIndex = game.getCurrPlayerIndex();
@@ -167,18 +167,16 @@ public class Game {
                 }
             }
 
+            if (game.getGameState() == GameState.DRAW)
+                System.out.println("The game is draw as there are now cards available to draw");
+            else if (game.getGameState() == GameState.WIN)
+                System.out.println( (player.getPlayerName()) + " has won the game");
+
             game.setTopCard(topCard);
-            if (game.getPlayers().get(currPlayerIndex).getCardsInHand().size() == 0) {
-                System.out.println(player.getPlayerName() + " has won the game");
-                break;
-            }
-            if (game.getStandardDeck().size() == 0) {
-                System.out.println("Draw");
-                break;
-            }
             currPlayerIndex = getNextPlayerIndex(currPlayerIndex, reverseOrder);
             game.setCurrPlayerIndex(currPlayerIndex);
         }
+
     }
 
 }
