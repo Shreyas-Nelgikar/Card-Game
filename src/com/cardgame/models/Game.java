@@ -80,8 +80,6 @@ public class Game {
             Player player = game.getPlayers().get(currPlayerIndex);
             Card topCard = game.getTopCard();
             System.out.println("##############################################################");
-            System.out.println("Player" + (player.getPlayerName()) + "'s turn, please select a card");
-            displayCards(player);
             if (topCard.getRank().equals(player.getBonus(0))) {
                 currPlayerIndex = getNextPlayerIndex(currPlayerIndex, reverseOrder);
             }
@@ -102,6 +100,18 @@ public class Game {
                     Card card = pickCards(game.getStandardDeck());
                     player.addCard(game.getPlayers().get(currPlayerIndex).getCardsInHand(), card);
                     player.removeCard(game.getStandardDeck(), card);
+                }
+                topCard = pickCards(game.getStandardDeck());
+                player.removeCard(game.getStandardDeck(), topCard);
+            }
+            else {
+                System.out.println("Player" + (player.getPlayerName()) + "'s turn, please select a card");
+                displayCards(player);
+                int select = scanner.nextInt();
+                Card card = game.getPlayers().get(currPlayerIndex).getCardsInHand().get(select);
+                while (!player.hasPlayableCard(card, topCard)) {
+                    select = scanner.nextInt();
+                    card = game.getPlayers().get(currPlayerIndex).getCardsInHand().get(select);
                 }
             }
         }

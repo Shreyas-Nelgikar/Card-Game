@@ -18,7 +18,7 @@ public class Main {
 
         try {
 
-            Game game = gameController.createGame(new Game());
+//            Game game = gameController.createGame(new Game());
 //            gameController.displayCards(game, 0);
 //            gameController.displayCards(game, 1);
 //            gameController.displayCards(game, 2);
@@ -27,7 +27,9 @@ public class Main {
 //            for (int i=0; i<list.size(); i++)
 //                System.out.println(list.get(i).getRank() +" "+ list.get(i).getSuit());
 //            System.out.println(list.size());
-            game.startGame(game);
+//            game.startGame(game);
+
+
 
         } catch (Exception e) {
             e.printStackTrace();
