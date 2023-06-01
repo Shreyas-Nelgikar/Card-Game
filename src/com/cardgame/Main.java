@@ -18,11 +18,7 @@ public class Main {
 
         try {
 
-            Game game = new Game();
-            game.createGame();
-            game = gameController.startGame(game.getPlayers(), game.getStandardDeck(),
-                    game.getCurrPlayerIndex(), game.getTopCard());
-//            gameController.displayCards(game, currPlayerIndex);
+
 
         } catch (Exception e) {
             e.printStackTrace();
