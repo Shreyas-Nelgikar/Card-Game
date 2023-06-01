@@ -17,7 +17,7 @@ public class Deck {
         standardDeck = new ArrayList<>();
         for (String suits : suit) {
             for (String ranks : rank) {
-                Card card = new Card(suits, ranks);
+                Card card = new Card(ranks, suits);
                 standardDeck.add(card);
             }
         }

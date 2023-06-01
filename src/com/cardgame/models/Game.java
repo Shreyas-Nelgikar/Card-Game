@@ -88,12 +88,17 @@ public class Game {
             Player player = game.getPlayers().get(currPlayerIndex);
             Card topCard = game.getTopCard();
             System.out.println("##############################################################");
+//            System.out.println(topCard.getRank());
             if (topCard.getRank().equals("A")) {
                 System.out.println( player.getPlayerName() + "'s turn has been skipped");
+                topCard = pickCards(game.getStandardDeck());
+                player.removeCard(game.getStandardDeck(), topCard);
             }
             else if (topCard.getRank().equals("K")) {
                 reverseOrder = !reverseOrder;
-                System.out.println("Turn of the game has been reversed");
+                topCard = pickCards(game.getStandardDeck());
+                player.removeCard(game.getStandardDeck(), topCard);
+                System.out.println("Direction of the game has been reversed");
             }
             else if (topCard.getRank().equals("Q")) {
                 for (int i=0; i<2; i++) {
@@ -103,7 +108,7 @@ public class Game {
                 }
                 topCard = pickCards(game.getStandardDeck());
                 player.removeCard(game.getStandardDeck(), topCard);
-                System.out.println("Player has picked 2 cards");
+                System.out.println((player.getPlayerName()) + " has picked 2 cards");
             }
             else if (topCard.getRank().equals("J")) {
                 for (int i=0; i<4; i++) {
@@ -113,7 +118,7 @@ public class Game {
                 }
                 topCard = pickCards(game.getStandardDeck());
                 player.removeCard(game.getStandardDeck(), topCard);
-                System.out.println("player has picked 4 cards");
+                System.out.println((player.getPlayerName()) + " has picked 4 cards");
             }
             else {
                 if (playerHasTopCard(player, topCard)) {
@@ -132,7 +137,7 @@ public class Game {
                 else {
                     displayCards(player);
                     System.out.println("TopCard " + topCard.getRank() + " " + topCard.getSuit());
-                    System.out.println("Player doesnt have a topCard so will pick a card from deck");
+                    System.out.println("Player " + (player.getPlayerName()) + " doesn't have a topCard so will pick a card from deck");
                     Card card = pickCards(game.getStandardDeck());
                     player.addCard(game.getPlayers().get(currPlayerIndex).getCardsInHand(), card);
                     player.removeCard(game.getStandardDeck(), card);
