@@ -1,6 +1,7 @@
 package com.cardgame.models;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Player {
 
@@ -30,23 +31,8 @@ public class Player {
         System.out.println(arr);
     }
 
-    public void hasBonusCard (Card topCard) {
-        if (topCard.getRank().equals(bonus[0])) {
-
-        }
-        else if (topCard.getRank().equals(bonus[1])) {
-
-        }
-        else if (topCard.getRank().equals(bonus[2])) {
-
-        }
-        else if (topCard.getRank().equals(bonus[3])) {
-
-        }
-    }
-
     public void hasPlayableCard (Card card, Card topCard) {
-        if (card.getRank() != topCard.getRank() || card.getSuit() != topCard.getSuit())
+        if (!card.getRank().equals(topCard.getRank()) || !card.getSuit().equals(topCard.getSuit()))
             System.out.println("Please re-select a Card that matches Rank or Suit of the topCard");
     }
 
