@@ -9,6 +9,7 @@ public class Game {
     private ArrayList<Card> standardDeck;
     private int currPlayerIndex;
     private Card topCard;
+    private GameState gameState;
 
     Scanner scanner = new Scanner(System.in);
 
@@ -42,6 +43,14 @@ public class Game {
 
     public void setCurrPlayerIndex(int currPlayerIndex) {
         this.currPlayerIndex = currPlayerIndex;
+    }
+
+    public GameState getGameState() {
+        return gameState;
+    }
+
+    public void setGameState(GameState gameState) {
+        this.gameState = gameState;
     }
 
     public Card getTopCard() {
@@ -80,26 +89,37 @@ public class Game {
         player.displayCards();
     }
 
+    public boolean hasWon (ArrayList<Card> list) {
+        return list.isEmpty();
+    }
+
+    public void gameState ()
+
     public void startGame (Game game) {
         int currPlayerIndex = game.getCurrPlayerIndex();
         boolean reverseOrder = false;
 
-        while (true) {
+        while (game.gameState == GameState.IN_PROGRESS) {
             Player player = game.getPlayers().get(currPlayerIndex);
             Card topCard = game.getTopCard();
+
             System.out.println("##############################################################");
 //            System.out.println(topCard.getRank());
+
+
             if (topCard.getRank().equals("A")) {
                 System.out.println( player.getPlayerName() + "'s turn has been skipped");
                 topCard = pickCards(game.getStandardDeck());
                 player.removeCard(game.getStandardDeck(), topCard);
             }
+
             else if (topCard.getRank().equals("K")) {
                 reverseOrder = !reverseOrder;
                 topCard = pickCards(game.getStandardDeck());
                 player.removeCard(game.getStandardDeck(), topCard);
                 System.out.println("Direction of the game has been reversed");
             }
+
             else if (topCard.getRank().equals("Q")) {
                 for (int i=0; i<2; i++) {
                     Card card = pickCards(game.getStandardDeck());
@@ -110,6 +130,7 @@ public class Game {
                 player.removeCard(game.getStandardDeck(), topCard);
                 System.out.println((player.getPlayerName()) + " has picked 2 cards");
             }
+
             else if (topCard.getRank().equals("J")) {
                 for (int i=0; i<4; i++) {
                     Card card = pickCards(game.getStandardDeck());
@@ -120,6 +141,7 @@ public class Game {
                 player.removeCard(game.getStandardDeck(), topCard);
                 System.out.println((player.getPlayerName()) + " has picked 4 cards");
             }
+
             else {
                 if (playerHasTopCard(player, topCard)) {
                     System.out.println("Player " + (player.getPlayerName()) + "'s turn, please select a card");
@@ -134,6 +156,7 @@ public class Game {
                     topCard = card;
                     player.removeCard(game.getPlayers().get(currPlayerIndex).getCardsInHand(), card);
                 }
+
                 else {
                     displayCards(player);
                     System.out.println("TopCard " + topCard.getRank() + " " + topCard.getSuit());
@@ -143,6 +166,7 @@ public class Game {
                     player.removeCard(game.getStandardDeck(), card);
                 }
             }
+
             game.setTopCard(topCard);
             if (game.getPlayers().get(currPlayerIndex).getCardsInHand().size() == 0) {
                 System.out.println(player.getPlayerName() + " has won the game");

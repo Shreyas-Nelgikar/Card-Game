@@ -55,8 +55,4 @@ public class Player {
         return false;
     }
 
-    public boolean hasWon (ArrayList<Card> list) {
-        return list.isEmpty();
-    }
-
 }

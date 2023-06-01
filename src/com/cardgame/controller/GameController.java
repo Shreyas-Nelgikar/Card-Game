@@ -1,9 +1,6 @@
 package com.cardgame.controller;
 
-import com.cardgame.models.Card;
-import com.cardgame.models.Deck;
-import com.cardgame.models.Game;
-import com.cardgame.models.Player;
+import com.cardgame.models.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -39,6 +36,7 @@ public class GameController {
         game.setPlayers(players);
         game.setStandardDeck(standardDeck);
         game.setTopCard(topCard);
+        game.setGameState(GameState.IN_PROGRESS);
         return game;
     }
 
