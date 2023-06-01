@@ -31,8 +31,14 @@ public class GameController {
             String name = scanner.next();
             players.add(new Player(id, name, inHandCards.get(i)));
         }
-        ArrayList<Card> standardDeck = new ArrayList<>();
-        Card topCard = new Card("1", "A");
+        ArrayList<ArrayList<Card>> cards = deck.drawCards(1, 52);
+        ArrayList<Card> standardDeck = cards.get(0);
+        Card topCard = standardDeck.get(standardDeck.size()-1);
+        standardDeck.remove(standardDeck.size()-1);
+        game.setCurrPlayerIndex(currPlayerIndex);
+        game.setPlayers(players);
+        game.setStandardDeck(standardDeck);
+        game.setTopCard(topCard);
         return game;
     }
 

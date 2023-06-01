@@ -33,7 +33,7 @@ public class Deck {
 //            System.out.println(random);
                 Card card = standardDeck.get(random);
                 arr.add(card);
-                Collections.swap(standardDeck, i, random);
+                Collections.swap(standardDeck, counter, random);
                 counter++;
             }
             list.add(arr);

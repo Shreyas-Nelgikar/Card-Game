@@ -69,4 +69,15 @@ public class Game {
         player.displayCards();
     }
 
+    public void startGame (Game game) {
+        int currPlayerIndex = game.getCurrPlayerIndex();
+        while (true) {
+            System.out.println("####################################################");
+            System.out.println("Player 1's turn, please select a card");
+            displayCards(game.getPlayers().get(currPlayerIndex));
+            int value = scanner.nextInt();
+
+        }
+    }
+
 }
