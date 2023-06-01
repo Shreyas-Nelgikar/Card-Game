@@ -10,7 +10,7 @@ public class Player {
     private ArrayList<Card> cardsInHand;
     private final String[] bonus = {"A", "K", "Q", "J"};
 
-    Player (int playerId, String playerName, ArrayList<Card> cardsInHand) {
+    public Player (int playerId, String playerName, ArrayList<Card> cardsInHand) {
         this.playerId = playerId;
         this.playerName = playerName;
         this.cardsInHand = cardsInHand;
@@ -24,9 +24,9 @@ public class Player {
         list.remove(card);
     }
 
-    public void displayCards (ArrayList<Card> list) {
+    public void displayCards () {
         ArrayList<String> arr = new ArrayList<>();
-        for (Card cards : list)
+        for (Card cards : cardsInHand)
             arr.add(cards.getRank() + " " + cards.getSuit());
         System.out.println(arr);
     }

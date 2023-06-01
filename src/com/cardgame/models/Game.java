@@ -8,6 +8,7 @@ public class Game {
     private ArrayList<Card> standardDeck;
     private int currPlayerIndex;
     private Card topCard;
+    private Player player;
 
     public Game (ArrayList<Player> players) {
         this.currPlayerIndex = 0;
@@ -57,6 +58,27 @@ public class Game {
             nextPlayerIndex = (currPlayerIndex + 1) % numPlayers;
         }
         return nextPlayerIndex;
+    }
+
+    public void displayCards (Player player) {
+        player.displayCards();
+    }
+
+    public void createGame () {
+        int currPlayerIndex = 0;
+        ArrayList<ArrayList<Card>> inHandCards = deck.drawCards(4, 5);
+        ArrayList<Player> players = new ArrayList<>();
+        players.add(new Player(1, "Luffy", inHandCards.get(0)));
+        players.add(new Player(2, "SABO", inHandCards.get(1)));
+//            players.add(new Player(2, "SABO", inHandCards.get(2)));
+//            players.add(new Player(2, "SABO", inHandCards.get(3)));
+        ArrayList<Card> standardDeck = new ArrayList<>();
+        Card topCard = null;
+        Game game = gameController.startGame(players, standardDeck, currPlayerIndex, topCard);
+        gameController.displayCards(game, currPlayerIndex);
+        gameController.displayCards(game, 1);
+//            gameController.displayCards(game, 2);
+//            gameController.displayCards(game, 3);
     }
 
 }

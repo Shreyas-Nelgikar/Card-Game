@@ -9,7 +9,7 @@ public class Deck {
     private final String[] rank = {"A", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
     private ArrayList<Card> standardDeck;
 
-    Deck () {
+    public Deck () {
         completeDeck();
     }
 
@@ -23,13 +23,20 @@ public class Deck {
         }
     }
 
-    public ArrayList<Card> drawCards (int size) {
-        ArrayList<Card> list = new ArrayList<>();
-        for (int i=0; i<size; i++) {
-            int random = (int) (Math.random() * (size - i) + i);
-            Card card = standardDeck.get(random);
-            list.add(card);
-            Collections.swap(standardDeck, i, random);
+    public ArrayList<ArrayList<Card>> drawCards (int players, int size) {
+        ArrayList<ArrayList<Card>> list = new ArrayList<>();
+        int counter = 0;
+        for (int i=0; i<players; i++) {
+            ArrayList<Card> arr = new ArrayList<>();
+            for (int j = 0; j < size; j++) {
+                int random = (int) (Math.random() * (52 - counter) + counter);
+//            System.out.println(random);
+                Card card = standardDeck.get(random);
+                arr.add(card);
+                Collections.swap(standardDeck, i, random);
+                counter++;
+            }
+            list.add(arr);
         }
         return list;
     }

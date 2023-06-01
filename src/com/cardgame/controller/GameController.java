@@ -12,7 +12,12 @@ public class GameController {
         Game game = new Game(players);
         game.setTopCard(topCard);
         game.setStandardDeck(standardDeck);
+        game.setPlayers(players);
         return game;
+    }
+
+    public void displayCards (Game game, int currPlayerIndex) {
+        game.displayCards(game.getPlayers().get(currPlayerIndex));
     }
 
 }
