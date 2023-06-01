@@ -9,7 +9,7 @@ public class Game {
     private int currPlayerIndex;
     private Card topCard;
 
-    Game (ArrayList<Player> players) {
+    public Game (ArrayList<Player> players) {
         this.currPlayerIndex = 0;
         this.players = players;
         this.topCard = null;
@@ -58,12 +58,5 @@ public class Game {
         }
         return nextPlayerIndex;
     }
-
-
-
-
-
-
-
 
 }
