@@ -8,7 +8,6 @@ public class Player {
     private int playerId;
     private String playerName;
     private ArrayList<Card> cardsInHand;
-    private final String[] bonus = {"A", "K", "Q", "J"};
 
     public Player (int playerId, String playerName, ArrayList<Card> cardsInHand) {
         this.playerId = playerId;
@@ -26,10 +25,6 @@ public class Player {
 
     public ArrayList<Card> getCardsInHand() {
         return cardsInHand;
-    }
-
-    public String getBonus(int index) {
-        return bonus[index];
     }
 
     public void addCard (ArrayList<Card> list, Card card) {

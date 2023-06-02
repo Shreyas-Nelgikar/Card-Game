@@ -50,7 +50,13 @@ public class Game {
             return this;
         }
 
-        public Game build () {
+        public void validateNoOfPlayers () throws Exception {
+            if (players.size() < 1 || players.size() > 4)
+                throw new Exception("Please Select atleast 1 and at max 4 players");
+        }
+
+        public Game build () throws Exception {
+            validateNoOfPlayers();
             return new Game(players, noOfPlayers);
         }
     }
@@ -231,12 +237,14 @@ public class Game {
                     System.out.println("Player " + (player.getPlayerName()) + "'s turn, please select a card");
                     displayCards(player);
                     System.out.println("TopCard " + topCard.getRank() + " " + topCard.getSuit());
+
                     int select = scanner.nextInt();
                     Card card = game.getPlayers().get(currPlayerIndex).getCardsInHand().get(select);
                     while (!player.hasPlayableCard(card, topCard)) {
                         select = scanner.nextInt();
                         card = game.getPlayers().get(currPlayerIndex).getCardsInHand().get(select);
                     }
+
                     topCard = card;
                     player.removeCard(game.getPlayers().get(currPlayerIndex).getCardsInHand(), card);
                 }
@@ -245,6 +253,7 @@ public class Game {
                     displayCards(player);
                     System.out.println("TopCard " + topCard.getRank() + " " + topCard.getSuit());
                     System.out.println("Player " + (player.getPlayerName()) + " doesn't have a topCard so will pick a card from deck");
+
                     Card card = pickCards(game.getStandardDeck());
                     player.addCard(game.getPlayers().get(currPlayerIndex).getCardsInHand(), card);
                     player.removeCard(game.getStandardDeck(), card);

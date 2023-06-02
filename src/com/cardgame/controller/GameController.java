@@ -9,7 +9,7 @@ public class GameController {
 
     Scanner scanner = new Scanner(System.in);
 
-    public Game createGame(ArrayList<Player> players, int noOfPlayers) {
+    public Game createGame(ArrayList<Player> players, int noOfPlayers) throws Exception {
 
         return Game.getBuilder()
                 .setPlayers(players)

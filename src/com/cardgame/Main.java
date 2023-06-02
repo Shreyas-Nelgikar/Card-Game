@@ -8,10 +8,13 @@ import java.util.Scanner;
 
 public class Main {
 
+    public static int add (int a, int b) {
+        return a + b;
+    }
+
     public static void main (String[] args) {
 
         GameController gameController = new GameController();
-        Scanner scanner = new Scanner(System.in);
 
         try {
 
@@ -20,6 +23,8 @@ public class Main {
             ArrayList<Player> players = gameIntialisation.initializePlayers(noOfPlayers);
             Game game = gameController.createGame(players, noOfPlayers);
             gameController.startGame(game);
+
+
 
 
         } catch (Exception e) {
