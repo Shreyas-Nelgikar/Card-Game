@@ -9,17 +9,51 @@ public class Game {
     private ArrayList<Card> standardDeck;
     private int currPlayerIndex;
     private Card topCard;
+    private Deck deck;
     private GameState gameState;
     private CardRank cardRank;
+    private int noOfPlayers;
 
     Scanner scanner = new Scanner(System.in);
 
-    public Game() {};
+//    public Game() {};
 
-    public Game (ArrayList<Player> players) {
+    public static Builder getBuilder() {
+        return new Builder();
+    }
+
+    private Game (ArrayList<Player> players, int noOfPlayers) {
         this.currPlayerIndex = 0;
         this.players = players;
-        this.topCard = null;
+        this.noOfPlayers = noOfPlayers;
+        this.standardDeck = getDrawPile();
+        this.topCard = getFirstTopCard(standardDeck);
+        this.gameState = GameState.IN_PROGRESS;
+    }
+
+    public static class Builder {
+
+        private ArrayList<Player> players;
+        private int noOfPlayers;
+
+        private Builder () {
+            this.players = new ArrayList<>();
+            this.noOfPlayers = 0;
+        }
+
+        public Builder setPlayers(ArrayList<Player> players) {
+            this.players = players;
+            return this;
+        }
+
+        public Builder setNoOfPlayers(int noOfPlayers) {
+            this.noOfPlayers = noOfPlayers;
+            return this;
+        }
+
+        public Game build () {
+            return new Game(players, noOfPlayers);
+        }
     }
 
     public ArrayList<Player> getPlayers() {
@@ -62,6 +96,27 @@ public class Game {
         this.topCard = topCard;
     }
 
+    public int getNoOfPlayers() {
+        return noOfPlayers;
+    }
+
+    public void setNoOfPlayers(int noOfPlayers) {
+        this.noOfPlayers = noOfPlayers;
+    }
+
+    public ArrayList<Card> getDrawPile () {
+        Deck deck = new Deck();
+        ArrayList<ArrayList<Card>> cards = deck.drawCards(1, 52);
+        ArrayList<Card> standardDeck = cards.get(0);
+        return standardDeck;
+    }
+
+    public  Card getFirstTopCard (ArrayList<Card> cards) {
+        int random = (int) (Math.random() * (52) + 0);
+        Card card = cards.get(random);
+        return card;
+    }
+
     public int getNextPlayerIndex (int currPlayerIndex, boolean reverseOrder) {
         int numPlayers = players.size();
         int nextPlayerIndex;
@@ -96,6 +151,8 @@ public class Game {
     }
 
     public void startGame (Game game) {
+
+
         int currPlayerIndex = game.getCurrPlayerIndex();
         boolean reverseOrder = false;
 
@@ -117,6 +174,7 @@ public class Game {
                 System.out.println( player.getPlayerName() + "'s turn has been skipped");
                 topCard = pickCards(game.getStandardDeck());
                 player.removeCard(game.getStandardDeck(), topCard);
+
             }
 
             else if (topCard.getRank().equals(CardRank.King)) {
