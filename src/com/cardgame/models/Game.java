@@ -16,7 +16,6 @@ public class Game {
 
     Scanner scanner = new Scanner(System.in);
 
-//    public Game() {};
 
     public static Builder getBuilder() {
         return new Builder();

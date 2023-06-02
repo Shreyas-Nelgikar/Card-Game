@@ -10,6 +10,10 @@ public class GameIntialisation {
     Scanner scanner = new Scanner(System.in);
 
     public int initializeNoOfPlayers () {
+
+        System.out.println("Welcome to the card Game");
+        System.out.println("Please select at max 4 players");
+
         int noOfPlayers = scanner.nextInt();
         while (noOfPlayers > 4) {
             System.out.println("You have crossed the maximum limit of players. Please select again");
