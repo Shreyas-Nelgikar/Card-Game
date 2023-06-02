@@ -156,12 +156,12 @@ public class Game {
         boolean reverseOrder = false;
 
         while (game.gameState == GameState.IN_PROGRESS) {
+
             Player player = game.getPlayers().get(currPlayerIndex);
             Card topCard = game.getTopCard();
 
             System.out.println("##############################################################");
-//            System.out.println(topCard.getRank());
-
+            System.out.println("Cards Left : " + game.getStandardDeck().size());
 
             if (topCard.getRank().equals(CardRank.A)) {
 
