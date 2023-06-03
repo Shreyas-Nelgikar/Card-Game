@@ -238,11 +238,15 @@ public class Game {
                     displayCards(player);
                     System.out.println("TopCard " + topCard.getRank() + " " + topCard.getSuit());
 
+                    int size = game.getPlayers().get(currPlayerIndex).getCardsInHand().size();
                     int select = scanner.nextInt();
+                    while (select >= size)
+                        System.out.println("Please Enter the index of the card that is present");
                     Card card = game.getPlayers().get(currPlayerIndex).getCardsInHand().get(select);
                     while (!player.hasPlayableCard(card, topCard)) {
                         select = scanner.nextInt();
-                        card = game.getPlayers().get(currPlayerIndex).getCardsInHand().get(select);
+                        if (select < size)
+                            card = game.getPlayers().get(currPlayerIndex).getCardsInHand().get(select);
                     }
 
                     topCard = card;
